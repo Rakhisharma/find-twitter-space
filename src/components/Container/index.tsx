@@ -23,6 +23,8 @@ const Component = ({ onSubmit }: Props): ReactElement => {
         );
     };
 
+    console.log(filter);
+
     return (
         <Grid container spacing={1} className={root}>
             <Grid item xs={12}>
