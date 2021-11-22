@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
-import { TextField, TextFieldProps } from '@material-ui/core';
+import { ReactElement } from 'react';
 
+import TextField, { Props as TextFieldProps } from '../TextField';
 import { GroupValue, Value } from './types';
 import useStyles from './styles';
 
@@ -59,7 +59,7 @@ const Component = ({
             helperText={helperText}
             onBlur={onBlur}
             onChange={event => {
-                const value = getEventValue(event as unknown as string);
+                const value = getEventValue(event);
                 if (value) {
                     onChange(value as Value);
                 }

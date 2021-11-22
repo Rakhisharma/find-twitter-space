@@ -4,7 +4,7 @@ import Search from '../Search';
 import MenuField from '../MenuField';
 
 import useStyles from './styles';
-import { ALL_MENUFIELD_ITEM } from './constants';
+import { ALL_MENUFIELD_ITEM, LIST_ITEMS } from './constants';
 import { Value } from './types';
 
 interface Props {
@@ -28,14 +28,14 @@ const Component = ({ onSubmit }: Props): ReactElement => {
             <Grid item xs={12}>
                 <Search
                     fullWidth
-                    placeholder="Search Products"
+                    placeholder="Search Twitter Spaces"
                     value={pattern}
                     onChange={newValue => setPattern(newValue)}
                     onSubmit={handleSubmit}
                 >
                     <MenuField
-                        label="Filter Category"
-                        items={[ALL_MENUFIELD_ITEM]}
+                        label="Filter Spaces Category"
+                        items={[ALL_MENUFIELD_ITEM, ...LIST_ITEMS]}
                         value={filter}
                         variant="outlined"
                         onChange={newValue => {

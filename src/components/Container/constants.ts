@@ -5,4 +5,19 @@ const ALL_MENUFIELD_ITEM: Value = {
     value: 'All Categories'
 };
 
-export { ALL_MENUFIELD_ITEM };
+const LIST_ITEMS: Array<Value> = [
+    {
+        id: '1',
+        value: 'Tech'
+    },
+    {
+        id: '2',
+        value: 'Web'
+    },
+    {
+        id: '3',
+        value: 'Javascript'
+    }
+];
+
+export { ALL_MENUFIELD_ITEM, LIST_ITEMS };

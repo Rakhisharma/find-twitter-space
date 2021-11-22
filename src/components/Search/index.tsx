@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Button, Grid, Icon, InputAdornment } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
-
-import { TextField, TextFieldProps } from '@material-ui/core';
+import TextField, { Props as TextFieldProps } from '../TextField';
 
 interface Props {
     value: string;
@@ -33,9 +32,7 @@ const Component = ({
                             variant="outlined"
                             placeholder={placeholder}
                             value={value}
-                            onChange={newValue =>
-                                onChange(newValue as unknown as string)
-                            }
+                            onChange={newValue => onChange(newValue)}
                             onKeyPress={({ key }) =>
                                 key === 'Enter' && onSubmit()
                             }
