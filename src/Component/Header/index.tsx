@@ -14,7 +14,7 @@ const Header = () => {
 
     return (
         <Grid container spacing={3} className={root}>
-            <Grid container spacing={2} xs={12} justify="flex-end">
+            <Grid container spacing={4} xs={12} justify="flex-end">
                 <Grid item>
                     <Link href={GITHUB_ISSUE} target="_blank">
                         <Typography variant="body1">{REPORT_ISSUE}</Typography>
