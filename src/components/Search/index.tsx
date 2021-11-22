@@ -11,6 +11,7 @@ interface Props {
     onSubmit: () => void;
     isEnabled: boolean;
     fullWidth?: TextFieldProps['fullWidth'];
+    children?: ReactElement;
 }
 
 const Component = ({
@@ -19,7 +20,8 @@ const Component = ({
     placeholder,
     fullWidth,
     onChange,
-    isEnabled
+    isEnabled,
+    children
 }: Props): ReactElement => {
     return (
         <Grid container spacing={1}>
@@ -48,6 +50,11 @@ const Component = ({
                             }}
                         />
                     </Grid>
+                    {children && (
+                        <Grid item xs={2}>
+                            {children}
+                        </Grid>
+                    )}
                     <Grid item>
                         <Button
                             variant="contained"

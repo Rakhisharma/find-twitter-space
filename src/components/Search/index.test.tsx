@@ -1,7 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 
-import { FilterOptionsProps } from './types';
 import Search from './index';
 
 describe('Component <Search />', () => {
