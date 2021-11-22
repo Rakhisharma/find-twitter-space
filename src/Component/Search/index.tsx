@@ -3,7 +3,6 @@ import { Button, Grid, Icon, InputAdornment } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 
 import { TextField, TextFieldProps } from '@material-ui/core';
-import { FilterOptionsProps } from './types';
 
 interface Props {
     value: string;
@@ -12,8 +11,6 @@ interface Props {
     onSubmit: () => void;
     isEnabled: boolean;
     fullWidth?: TextFieldProps['fullWidth'];
-    children?: ReactElement;
-    filterOptions?: Array<FilterOptionsProps>;
 }
 
 const Component = ({
@@ -22,9 +19,7 @@ const Component = ({
     placeholder,
     fullWidth,
     onChange,
-    isEnabled,
-    children,
-    filterOptions
+    isEnabled
 }: Props): ReactElement => {
     return (
         <Grid container spacing={1}>
