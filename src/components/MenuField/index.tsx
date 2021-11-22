@@ -1,21 +1,22 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
+import { MenuItem } from '@material-ui/core';
 
 import TextField, { Props as TextFieldProps } from '../TextField';
-import { GroupValue, Value } from './types';
+
+import { Value } from './types';
 import useStyles from './styles';
 
 interface Props {
     onChange: (newValue: Value | Array<Value>) => void;
     onBlur: () => void;
-    items: Array<Value | GroupValue>;
+    items: Array<Value>;
     isMinimized: boolean;
+    isEnabled: boolean;
     error: boolean;
     variant: TextFieldProps['variant'];
-    classes?: TextFieldProps['classes'];
     helperText?: string;
-    value?: Value | Array<Value | GroupValue>;
+    value?: Value | Array<Value>;
     label?: string;
-    onSelect?: () => void;
 }
 
 const Component = ({
@@ -28,14 +29,14 @@ const Component = ({
     error,
     helperText,
     variant,
-    classes
+    isEnabled
 }: Props): ReactElement => {
     const { input, label: labelClass } = useStyles({
         isMinimized
     });
 
     const getEventValue = (value: string) => {
-        const item = items.find(opt => 'id' in opt && opt.id === value);
+        const item = items.find(({ id }) => id === value);
         if (!Array.isArray(value)) {
             return item;
         } else {
@@ -47,21 +48,17 @@ const Component = ({
         <TextField
             select
             fullWidth
-            classes={classes}
             label={label}
             variant={variant}
-            value={
-                Array.isArray(value)
-                    ? value
-                    : value && 'id' in value && value.id
-            }
+            isEnabled={isEnabled}
+            value={Array.isArray(value) ? value : value && value.id}
             error={error}
             helperText={helperText}
             onBlur={onBlur}
             onChange={event => {
                 const value = getEventValue(event);
                 if (value) {
-                    onChange(value as Value);
+                    onChange(value);
                 }
             }}
             InputLabelProps={{ classes: { root: labelClass } }}
@@ -71,7 +68,13 @@ const Component = ({
             SelectProps={{
                 multiple: Array.isArray(value)
             }}
-        ></TextField>
+        >
+            {items.map(({ id, value }) => (
+                <MenuItem value={id} key={`item-${id}`}>
+                    {value}
+                </MenuItem>
+            ))}
+        </TextField>
     );
 };
 
@@ -90,4 +93,3 @@ Component.defaultProps = {
 } as Partial<Props>;
 
 export default Component;
-export type { Props };
