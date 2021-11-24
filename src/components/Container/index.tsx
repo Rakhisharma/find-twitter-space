@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Component = ({ onSubmit }: Props): ReactElement => {
-    const { root } = useStyles();
+    const { root, titleText } = useStyles();
     const [pattern, setPattern] = useState<string>('');
     const [filter, setFilter] = useState<Value>(ALL_MENUFIELD_ITEM);
 
@@ -32,8 +32,8 @@ const Component = ({ onSubmit }: Props): ReactElement => {
 
     return (
         <Grid container spacing={4} className={root}>
-            <Grid item xs={8}>
-                <Typography variant="h2">
+            <Grid item>
+                <Typography variant="h2" className={titleText}>
                     <strong>Search for Twitter Spaces </strong>
                 </Typography>
             </Grid>
