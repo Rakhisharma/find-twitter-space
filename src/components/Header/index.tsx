@@ -1,32 +1,25 @@
-import { Grid, Link, Typography } from '@material-ui/core';
+import { Grid, Link } from '@material-ui/core';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 import useStyles from './styles';
-import {
-    GITHUB_ISSUE,
-    REPORT_ISSUE,
-    TWITTER_LINK,
-    CREATED_BY,
-    TWITTER_USER
-} from './constants';
+import { GITHUB_LINK, TWITTER_LINK } from './constants';
 
 const Header = () => {
     const { root } = useStyles();
 
     return (
-        <Grid container spacing={3} className={root}>
-            <Grid container spacing={4} xs={12} justify="flex-end">
+        <Grid container spacing={2} className={root}>
+            <Grid container spacing={3} xs={12} justify="flex-end">
                 <Grid item>
-                    <Link href={GITHUB_ISSUE} target="_blank">
-                        <Typography variant="body1">{REPORT_ISSUE}</Typography>
+                    <Link href={TWITTER_LINK} target="_blank">
+                        <TwitterIcon fontSize="large" htmlColor="black" />
                     </Link>
                 </Grid>
                 <Grid item>
-                    <Typography variant="body1">
-                        {CREATED_BY}
-                        <Link href={TWITTER_LINK} target="_blank">
-                            {''} {TWITTER_USER}
-                        </Link>
-                    </Typography>
+                    <Link href={GITHUB_LINK} target="_blank">
+                        <GitHubIcon fontSize="large" htmlColor="black" />
+                    </Link>
                 </Grid>
             </Grid>
         </Grid>
