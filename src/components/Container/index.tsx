@@ -2,6 +2,7 @@ import { ReactElement, useState } from 'react';
 import { Grid } from '@material-ui/core';
 import Search from '../Search';
 import MenuField from '../MenuField';
+import Card from '../Card';
 
 import useStyles from './styles';
 import { ALL_MENUFIELD_ITEM, LIST_ITEMS } from './constants';
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const Component = ({ onSubmit }: Props): ReactElement => {
-    const { root } = useStyles();
+    const { root, cardContent } = useStyles();
     const [pattern, setPattern] = useState<string>('');
     const [filter, setFilter] = useState<Value>(ALL_MENUFIELD_ITEM);
 
@@ -24,6 +25,10 @@ const Component = ({ onSubmit }: Props): ReactElement => {
     };
 
     console.log(filter);
+
+    const isSearch = () => {
+        if (pattern === '' && filter === ALL_MENUFIELD_ITEM) return true;
+    };
 
     return (
         <Grid container spacing={1} className={root}>
@@ -53,6 +58,14 @@ const Component = ({ onSubmit }: Props): ReactElement => {
                     />
                 </Search>
             </Grid>
+            {isSearch() &&
+                [1, 2, 3, 4, 5, 6].map(index => {
+                    return (
+                        <Grid item xs={4} key={index} className={cardContent}>
+                            <Card />
+                        </Grid>
+                    );
+                })}
         </Grid>
     );
 };
