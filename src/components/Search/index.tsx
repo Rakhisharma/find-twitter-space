@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { Button, Grid, Icon, InputAdornment } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 import TextField, { Props as TextFieldProps } from '../TextField';
-
+import useStyles from './styles';
 interface Props {
     value: string;
     onChange: (newValue: string) => void;
@@ -22,6 +22,8 @@ const Component = ({
     isEnabled,
     children
 }: Props): ReactElement => {
+    const { searchButton } = useStyles();
+
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
@@ -55,8 +57,9 @@ const Component = ({
                     <Grid item>
                         <Button
                             variant="contained"
+                            className={searchButton}
+                            size="large"
                             onClick={() => onSubmit()}
-                            disabled={!isEnabled}
                         >
                             Search
                         </Button>
