@@ -1,12 +1,11 @@
-const GITHUB_ISSUE =
-    'hhttps://github.com/Rakhisharma/find-twitter-space/issues';
+const GITHUB_LINK = 'https://github.com/Rakhisharma/find-twitter-space';
 
 const TWITTER_LINK = 'https://twitter.com/atbrakhi';
 
-const REPORT_ISSUE = 'Report Issue';
+const GITHUB = 'Github ';
 
 const CREATED_BY = 'Created by';
 
 const TWITTER_USER = 'atbrakhi';
 
-export { GITHUB_ISSUE, REPORT_ISSUE, TWITTER_LINK, CREATED_BY, TWITTER_USER };
+export { GITHUB_LINK, GITHUB, TWITTER_LINK, CREATED_BY, TWITTER_USER };
