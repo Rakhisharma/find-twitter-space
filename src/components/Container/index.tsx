@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import Search from '../Search';
 import MenuField from '../MenuField';
 import Card from '../Card';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Component = ({ onSubmit }: Props): ReactElement => {
-    const { root, cardContent } = useStyles();
+    const { root } = useStyles();
     const [pattern, setPattern] = useState<string>('');
     const [filter, setFilter] = useState<Value>(ALL_MENUFIELD_ITEM);
 
@@ -31,7 +31,12 @@ const Component = ({ onSubmit }: Props): ReactElement => {
     };
 
     return (
-        <Grid container spacing={1} className={root}>
+        <Grid container spacing={4} className={root}>
+            <Grid item xs={8}>
+                <Typography variant="h2">
+                    <strong>Search for Twitter Spaces </strong>
+                </Typography>
+            </Grid>
             <Grid item xs={12}>
                 <Search
                     fullWidth
@@ -61,7 +66,7 @@ const Component = ({ onSubmit }: Props): ReactElement => {
             {isSearch() &&
                 [1, 2, 3, 4, 5, 6].map(index => {
                     return (
-                        <Grid item xs={4} key={index} className={cardContent}>
+                        <Grid item xs={4} key={index}>
                             <Card />
                         </Grid>
                     );
