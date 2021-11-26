@@ -7,16 +7,60 @@ const ALL_MENUFIELD_ITEM: Value = {
 
 const LIST_ITEMS: Array<Value> = [
     {
-        id: '1',
-        value: 'Tech'
+        id: 'nft',
+        value: 'NFT'
     },
     {
-        id: '2',
+        id: 'web',
         value: 'Web'
     },
     {
-        id: '3',
-        value: 'Javascript'
+        id: 'tech',
+        value: 'Tech'
+    },
+    {
+        id: 'rust',
+        value: 'Rust'
+    },
+    {
+        id: 'web3',
+        value: 'Web3'
+    },
+    {
+        id: 'crypto',
+        value: 'Crypto'
+    },
+    {
+        id: 'bitcoin',
+        value: 'Bitcoin'
+    },
+    {
+        id: 'ethereum',
+        value: 'Ethereum'
+    },
+    {
+        id: 'world',
+        value: 'World'
+    },
+    {
+        id: 'india',
+        value: 'India'
+    },
+    {
+        id: 'health',
+        value: 'Health'
+    },
+    {
+        id: 'coding',
+        value: 'Coding'
+    },
+    {
+        id: 'programming',
+        value: 'Programming'
+    },
+    {
+        id: 'politics',
+        value: 'Politics'
     }
 ];
 
