@@ -1,8 +1,7 @@
 let myHeaders = new Headers();
-myHeaders.append(
-    'Authorization',
-    `Bearer AAAAAAAAAAAAAAAAAAAAAJK2WAEAAAAAz4J7KN5igVXLw9FdnUKnIzPwYa4%3DU35LMcCWGcwaH4gxpDHDNc5JTK5EOuyp36zx6bftxTP8YuVWce`
-);
+const token = process.env.TWITTER_TOKEN;
+
+myHeaders.append('Authorization', `Bearer ${token}`);
 
 let requestOptions = {
     method: 'GET',
