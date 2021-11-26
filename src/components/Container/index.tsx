@@ -7,6 +7,7 @@ import Card from '../Card';
 import useStyles from './styles';
 import { ALL_MENUFIELD_ITEM, LIST_ITEMS } from './constants';
 import { Value } from './types';
+import fetchList from '../../api';
 
 interface Props {
     onSubmit: (pattern: string, filter?: string) => void;
@@ -29,6 +30,8 @@ const Component = ({ onSubmit }: Props): ReactElement => {
     const isSearch = () => {
         if (pattern === '' && filter === ALL_MENUFIELD_ITEM) return true;
     };
+
+    fetchList();
 
     return (
         <Grid container spacing={4} className={root}>
