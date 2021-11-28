@@ -10,7 +10,7 @@ const Header = () => {
 
     return (
         <Grid container spacing={2} className={root}>
-            <Grid container spacing={3} xs={12} justify="flex-end">
+            <Grid container spacing={3} justifyContent="flex-end">
                 <Grid item>
                     <Link href={TWITTER_LINK} target="_blank">
                         <TwitterIcon fontSize="large" htmlColor="black" />
