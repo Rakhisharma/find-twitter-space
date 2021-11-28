@@ -31,8 +31,6 @@ const Component = ({ onSubmit }: Props): ReactElement => {
         if (pattern === '' && filter === ALL_MENUFIELD_ITEM) return true;
     };
 
-    // handler();
-
     const newData = async () => await handler().then(item => item);
 
     console.log(newData());
