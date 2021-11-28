@@ -7,7 +7,7 @@ import Card from '../Card';
 import useStyles from './styles';
 import { ALL_MENUFIELD_ITEM, LIST_ITEMS } from './constants';
 import { Value } from './types';
-import fetchList from '../../api';
+import handler from '../../api/';
 
 interface Props {
     onSubmit: (pattern: string, filter?: string) => void;
@@ -31,7 +31,11 @@ const Component = ({ onSubmit }: Props): ReactElement => {
         if (pattern === '' && filter === ALL_MENUFIELD_ITEM) return true;
     };
 
-    fetchList();
+    // handler();
+
+    const newData = async () => await handler().then(item => item);
+
+    console.log(newData());
 
     return (
         <Grid container spacing={4} className={root}>
