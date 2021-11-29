@@ -1,6 +1,6 @@
 import { Grid, Link } from '@material-ui/core';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 import useStyles from './styles';
 import { GITHUB_LINK, TWITTER_LINK } from './constants';
