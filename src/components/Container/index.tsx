@@ -45,7 +45,6 @@ const Component = ({ onSubmit }: Props): ReactElement => {
     const spacesData = data?.data as Array<SpacesData>;
     const userData = data?.includes as Array<UserData>;
 
-    console.log('data', data);
     console.log('spacesData', spacesData);
     console.log('userData', userData);
 
