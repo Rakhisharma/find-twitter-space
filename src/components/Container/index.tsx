@@ -1,4 +1,5 @@
 import { ReactElement, useState } from 'react';
+import { useAsyncEffect } from 'use-async-effect';
 import { Grid, Typography } from '@material-ui/core';
 import Search from '../Search';
 import MenuField from '../MenuField';
@@ -8,6 +9,7 @@ import useStyles from './styles';
 import { ALL_MENUFIELD_ITEM, LIST_ITEMS } from './constants';
 import { Value } from './types';
 import handler from '../../api/';
+import { Data, SpacesData, UserData } from '../../api/type';
 
 interface Props {
     onSubmit: (pattern: string, filter?: string) => void;
@@ -15,8 +17,19 @@ interface Props {
 
 const Component = ({ onSubmit }: Props): ReactElement => {
     const { root, titleText } = useStyles();
+    const [data, setData] = useState<Data>();
     const [pattern, setPattern] = useState<string>('');
     const [filter, setFilter] = useState<Value>(ALL_MENUFIELD_ITEM);
+
+    useAsyncEffect(
+        async isMounted => {
+            const newData = await handler();
+            if (!isMounted()) return;
+
+            setData(newData);
+        },
+        [pattern, filter]
+    );
 
     const handleSubmit = () => {
         onSubmit(
@@ -25,15 +38,16 @@ const Component = ({ onSubmit }: Props): ReactElement => {
         );
     };
 
-    console.log(filter);
-
     const isSearch = () => {
         if (pattern === '' && filter === ALL_MENUFIELD_ITEM) return true;
     };
 
-    const newData = async () => await handler().then(item => item);
+    const spacesData = data?.data as Array<SpacesData>;
+    const userData = data?.includes as Array<UserData>;
 
-    console.log(newData());
+    console.log('data', data);
+    console.log('spacesData', spacesData);
+    console.log('userData', userData);
 
     return (
         <Grid container spacing={4} className={root}>
@@ -69,15 +83,32 @@ const Component = ({ onSubmit }: Props): ReactElement => {
                 </Search>
             </Grid>
             {isSearch() &&
-                [1, 2, 3, 4, 5, 6].map(index => {
-                    return (
-                        <Grid item xs={4} key={index}>
-                            <Card />
-                        </Grid>
-                    );
+                spacesData &&
+                userData &&
+                userData.map((item, index) => {
+                    return spacesData.map((user, index) => {
+                        return (
+                            <Grid item xs={4} key={index}>
+                                <Card
+                                    data={[{ userData: item, spaceData: user }]}
+                                />
+                            </Grid>
+                        );
+                    });
                 })}
         </Grid>
     );
 };
 
 export default Component;
+
+//TODO
+//1. get data here
+// use that data to show it in the UI
+//remove usused modules
+//improve the structure of the project
+// improve types and remove 'any' type from project
+// write readme file
+// write how to use
+// write how to contribute
+// how things to improve section
