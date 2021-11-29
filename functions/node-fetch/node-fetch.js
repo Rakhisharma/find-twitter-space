@@ -13,7 +13,7 @@ let requestOptions = {
 const handler = async function () {
     try {
         const response = await fetch(
-            'https://api.twitter.com/2/spaces/search?query=web3&space.fields=creator_id,host_ids,id,lang,scheduled_start,speaker_ids,state,title&expansions=speaker_ids,creator_id,host_ids&user.fields=id,name,profile_image_url,username',
+            'https://api.twitter.com/2/spaces/search?query=tech&space.fields=creator_id,host_ids,id,lang,scheduled_start,speaker_ids,state,title&expansions=speaker_ids,creator_id,host_ids&user.fields=id,name,profile_image_url,username',
             requestOptions
         );
         if (!response.ok) {
