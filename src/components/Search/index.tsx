@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Button, Grid, Icon, InputAdornment } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 import TextField, { Props as TextFieldProps } from '../TextField';
