@@ -1,4 +1,4 @@
-const fetch = require('isomorphic-fetch');
+const fetch = require('node-fetch');
 
 const token = process.env.TWITTER_TOKEN;
 
@@ -6,14 +6,20 @@ let myHeaders = new Headers();
 
 myHeaders.append('Authorization', `Bearer ${token}`);
 
+const baseUrl = 'https://api.twitter.com/2/spaces';
+const querParam =
+    'space.fields=creator_id,host_ids,id,lang,scheduled_start,speaker_ids,state,title&expansions=speaker_ids,creator_id,host_ids&user.fields=id,name,profile_image_url,username';
+
 let requestOptions = {
     method: 'GET',
     headers: myHeaders
 };
-const handler = async function () {
+const handler = async function (event) {
+    const searchItem = event.headers.search;
+
     try {
         const response = await fetch(
-            'https://api.twitter.com/2/spaces/search?query=tech&space.fields=creator_id,host_ids,id,lang,scheduled_start,speaker_ids,state,title&expansions=speaker_ids,creator_id,host_ids&user.fields=id,name,profile_image_url,username',
+            `${baseUrl}/search?query=${searchItem}&${querParam}`,
             requestOptions
         );
         if (!response.ok) {
