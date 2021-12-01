@@ -1,15 +1,15 @@
 import { ReactElement, useState } from 'react';
 import { useAsyncEffect } from 'use-async-effect';
 import { Grid, Typography } from '@material-ui/core';
-import Search from '../Search';
-import MenuField from '../MenuField';
-import Card from '../Card';
+import Search from '../../components/Search';
+import MenuField from '../../components/MenuField';
+import Card from '../../components/Card';
 
 import useStyles from './styles';
 import { ALL_MENUFIELD_ITEM, LIST_ITEMS } from './constants';
 import { Value } from './types';
-import { Data as DataAll } from '../Card/type';
-import fetchList from '../../api/';
+import { Data as DataAll } from '../../components/Card/type';
+import fetchList from '../../api';
 import { Data, SpacesData, UserData } from '../../api/type';
 
 const Component = (): ReactElement => {

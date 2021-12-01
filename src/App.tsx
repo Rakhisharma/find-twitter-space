@@ -1,7 +1,7 @@
 import useStyles from './styles';
 
 import Header from './components/Header';
-import Container from './components/Container';
+import Container from './Pages/Container';
 
 const App = () => {
     const { root } = useStyles();
