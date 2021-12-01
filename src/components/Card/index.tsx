@@ -1,32 +1,22 @@
-import { CardActions, Link } from '@material-ui/core';
-import { Card, CardMedia, Box, CardContent, Typography } from '@mui/material';
-import moment from 'moment';
-
 import { ReactElement } from 'react';
+import {
+    Card,
+    CardMedia,
+    Box,
+    CardContent,
+    Typography,
+    CardActions,
+    Link
+} from '@mui/material';
+
 import { Data } from './type';
+import { spaceLink, scheduledDate, getCorrectSizeImage } from './utils';
 
 interface Props {
     data: Array<Data>;
 }
 
 const Component = ({ data }: Props): ReactElement => {
-    //move this fun to utils
-    const spaceLink = (id: string) => {
-        return `twitter.com/i/spaces/${id}`;
-    };
-    //move this fun to utils
-    const scheduledDate = (scheduleDate: string): string => {
-        const date = new Date(scheduleDate);
-        return moment(date).utc().format('YYYY MMM ddd  HH:mm');
-    };
-
-    //move this fun to utils
-    const getCorrectSizeImage = (imageUrl: string): string => {
-        let url = imageUrl.toString().replace(/normal/g, '400x400');
-
-        return url;
-    };
-
     return (
         <Card sx={{ display: 'flex' }}>
             <CardMedia

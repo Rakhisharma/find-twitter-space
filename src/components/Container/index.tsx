@@ -11,11 +11,7 @@ import { Value } from './types';
 import fetchList from '../../api/';
 import { Data, SpacesData, UserData } from '../../api/type';
 
-interface Props {
-    onSubmit: (pattern: string, filter?: string) => void;
-}
-
-const Component = ({ onSubmit }: Props): ReactElement => {
+const Component = (): ReactElement => {
     const { root, titleText } = useStyles();
     const [data, setData] = useState<Data>();
     const [pattern, setPattern] = useState<string>('');
@@ -23,8 +19,20 @@ const Component = ({ onSubmit }: Props): ReactElement => {
 
     useAsyncEffect(
         async isMounted => {
-            if (!pattern) return;
-            const newData = await fetchList(pattern);
+            const handleSearch = () => {
+                if (pattern === '' && filter === ALL_MENUFIELD_ITEM) {
+                    return '';
+                } else if (pattern !== '' && filter === ALL_MENUFIELD_ITEM) {
+                    return pattern;
+                } else {
+                    return filter.value;
+                }
+            };
+
+            const searchData = handleSearch();
+            console.log(searchData);
+
+            const newData = await fetchList(searchData);
             if (!isMounted()) return;
 
             setData(newData);
@@ -32,22 +40,12 @@ const Component = ({ onSubmit }: Props): ReactElement => {
         [pattern, filter]
     );
 
-    const handleSubmit = () => {
-        onSubmit(
-            pattern,
-            filter.id !== ALL_MENUFIELD_ITEM.id ? filter.id : undefined
-        );
-    };
-
     const isSearch = () => {
-        if (pattern === '' && filter === ALL_MENUFIELD_ITEM) return true;
+        if (pattern !== '' && filter !== ALL_MENUFIELD_ITEM) return true;
     };
 
     const spacesData = data?.data as Array<SpacesData>;
     const userData = data?.includes as Array<UserData>;
-
-    console.log('spacesData', spacesData);
-    console.log('userData', userData);
 
     return (
         <Grid container spacing={4} className={root}>
@@ -61,8 +59,14 @@ const Component = ({ onSubmit }: Props): ReactElement => {
                     fullWidth
                     placeholder="Search Twitter Spaces"
                     value={pattern}
-                    onChange={newValue => setPattern(newValue)}
-                    onSubmit={handleSubmit}
+                    onChange={newValue => {
+                        setPattern(newValue);
+                        setFilter(ALL_MENUFIELD_ITEM);
+                    }}
+                    onSubmit={() => {
+                        setPattern(pattern);
+                        setFilter(ALL_MENUFIELD_ITEM);
+                    }}
                 >
                     <MenuField
                         label="Filter Spaces Category"
@@ -72,18 +76,12 @@ const Component = ({ onSubmit }: Props): ReactElement => {
                         onChange={newValue => {
                             const newFilter = newValue as Value;
                             setFilter(newFilter);
-                            onSubmit(
-                                pattern,
-                                newFilter.id !== ALL_MENUFIELD_ITEM.id
-                                    ? newFilter.id
-                                    : undefined
-                            );
+                            setPattern('');
                         }}
                     />
                 </Search>
             </Grid>
-            {isSearch() &&
-                spacesData &&
+            {spacesData &&
                 userData &&
                 userData.map((item, index) => {
                     return spacesData.map((user, index) => {
