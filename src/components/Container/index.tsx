@@ -8,7 +8,7 @@ import Card from '../Card';
 import useStyles from './styles';
 import { ALL_MENUFIELD_ITEM, LIST_ITEMS } from './constants';
 import { Value } from './types';
-import handler from '../../api/';
+import fetchList from '../../api/';
 import { Data, SpacesData, UserData } from '../../api/type';
 
 interface Props {
@@ -23,7 +23,8 @@ const Component = ({ onSubmit }: Props): ReactElement => {
 
     useAsyncEffect(
         async isMounted => {
-            const newData = await handler();
+            if (!pattern) return;
+            const newData = await fetchList(pattern);
             if (!isMounted()) return;
 
             setData(newData);
