@@ -1,7 +1,9 @@
 import { mapToData } from './utils';
 
-const handler = () =>
-    fetch('/.netlify/functions/node-fetch')
+const handler = (searchData = 'tech') =>
+    fetch('/.netlify/functions/node-fetch', {
+        headers: { search: `${searchData}` }
+    })
         .then(response => response.json())
         .then(result => mapToData(result.data));
 
