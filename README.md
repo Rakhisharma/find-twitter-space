@@ -23,13 +23,13 @@ Please adhere to this project's `code of conduct`.
 
 ## Tech Stack
 
-**-** React
+-   Typescript
 
-**-** Typescript
+-   React
 
-**-** Node.js
+-   Node.js
 
-**-** Materail UI
+-   Materail UI
 
 ## Run Locally
 
