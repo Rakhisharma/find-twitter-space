@@ -13,7 +13,7 @@ import { Data } from './type';
 import { spaceLink, scheduledDate, getCorrectSizeImage } from './utils';
 
 interface Props {
-    data: Array<Data>;
+    data: Data;
 }
 
 const Component = ({ data }: Props): ReactElement => {
@@ -22,7 +22,7 @@ const Component = ({ data }: Props): ReactElement => {
             <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                image={getCorrectSizeImage(data[0].userData.profileImage)}
+                image={getCorrectSizeImage(data.profileImage)}
                 alt="profile picture"
             />
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -32,14 +32,14 @@ const Component = ({ data }: Props): ReactElement => {
                         variant="body1"
                         color="text.primary"
                     >
-                        {data[0].spaceData.title}
+                        {data.title}
                     </Typography>
                     <Typography
                         variant="subtitle2"
                         color="text.secondary"
                         component="div"
                     >
-                        {scheduledDate(data[0].spaceData.scheduledStart)} UTC
+                        {scheduledDate(data.scheduledStart)}
                     </Typography>
                 </CardContent>
                 <Box
@@ -54,16 +54,13 @@ const Component = ({ data }: Props): ReactElement => {
                 >
                     <CardActions>
                         <Link
-                            href={`https://twitter.com//${data[0].userData.userName}`}
+                            href={`https://twitter.com//${data.userName}`}
                             target="_blank"
                         >
-                            @{data[0].userData.userName}
+                            @{data.userName}
                         </Link>
 
-                        <Link
-                            href={spaceLink(data[0].spaceData.id)}
-                            target="_blank"
-                        >
+                        <Link href={spaceLink(data.id)} target="_blank">
                             Join here
                         </Link>
                     </CardActions>
