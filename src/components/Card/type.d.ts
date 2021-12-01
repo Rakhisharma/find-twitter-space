@@ -1,4 +1,7 @@
-import { SpacesData, UserData } from '../../api/type';
+import {
+    FetchSuccessPayloadUsers,
+    FetchSuccessPayloadData
+} from '../../api/type';
 
 export interface Data {
     userId: FetchSuccessPayloadUsers['id'];
