@@ -9,11 +9,7 @@ const App = () => {
     return (
         <div className={root}>
             <Header />
-            <Container
-                onSubmit={() => {
-                    //do nothing
-                }}
-            />
+            <Container />
         </div>
     );
 };
