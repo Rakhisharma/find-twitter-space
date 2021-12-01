@@ -43,10 +43,6 @@ const LIST_ITEMS: Array<Value> = [
         value: 'World'
     },
     {
-        id: 'india',
-        value: 'India'
-    },
-    {
         id: 'health',
         value: 'Health'
     },
