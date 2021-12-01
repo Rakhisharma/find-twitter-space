@@ -8,44 +8,62 @@ import Card from '../Card';
 import useStyles from './styles';
 import { ALL_MENUFIELD_ITEM, LIST_ITEMS } from './constants';
 import { Value } from './types';
+import { Data as DataAll } from '../Card/type';
 import fetchList from '../../api/';
 import { Data, SpacesData, UserData } from '../../api/type';
 
 const Component = (): ReactElement => {
     const { root, titleText } = useStyles();
+    const [loading, setLoading] = useState<boolean>(false);
     const [data, setData] = useState<Data>();
     const [pattern, setPattern] = useState<string>('');
     const [filter, setFilter] = useState<Value>(ALL_MENUFIELD_ITEM);
 
     useAsyncEffect(
         async isMounted => {
+            setLoading(true);
             const handleSearch = () => {
                 if (pattern === '' && filter === ALL_MENUFIELD_ITEM) {
                     return '';
                 } else if (pattern !== '' && filter === ALL_MENUFIELD_ITEM) {
+                    setFilter(ALL_MENUFIELD_ITEM);
                     return pattern;
-                } else {
+                } else if (pattern === '' && filter !== ALL_MENUFIELD_ITEM) {
+                    setPattern('');
                     return filter.value;
+                } else {
+                    return '';
                 }
             };
 
             const searchData = handleSearch();
-            console.log(searchData);
 
             const newData = await fetchList(searchData);
+
             if (!isMounted()) return;
 
             setData(newData);
+
+            setLoading(false);
         },
         [pattern, filter]
     );
 
-    const isSearch = () => {
-        if (pattern !== '' && filter !== ALL_MENUFIELD_ITEM) return true;
-    };
-
     const spacesData = data?.data as Array<SpacesData>;
     const userData = data?.includes as Array<UserData>;
+
+    const newData = () => {
+        if (!userData && !spacesData) return;
+
+        return spacesData.map(spacesItem => ({
+            ...userData.find(
+                userItem => userItem.userId === spacesItem.creatorId && userItem
+            ),
+            ...spacesItem
+        }));
+    };
+
+    console.log(newData());
 
     return (
         <Grid container spacing={4} className={root}>
@@ -59,13 +77,9 @@ const Component = (): ReactElement => {
                     fullWidth
                     placeholder="Search Twitter Spaces"
                     value={pattern}
-                    onChange={newValue => {
-                        setPattern(newValue);
-                        setFilter(ALL_MENUFIELD_ITEM);
-                    }}
+                    onChange={newValue => setPattern(newValue)}
                     onSubmit={() => {
                         setPattern(pattern);
-                        setFilter(ALL_MENUFIELD_ITEM);
                     }}
                 >
                     <MenuField
@@ -76,24 +90,25 @@ const Component = (): ReactElement => {
                         onChange={newValue => {
                             const newFilter = newValue as Value;
                             setFilter(newFilter);
-                            setPattern('');
                         }}
                     />
                 </Search>
             </Grid>
-            {spacesData &&
-                userData &&
-                userData.map((item, index) => {
-                    return spacesData.map((user, index) => {
-                        return (
-                            <Grid item xs={4} key={index}>
-                                <Card
-                                    data={[{ userData: item, spaceData: user }]}
-                                />
-                            </Grid>
-                        );
-                    });
-                })}
+            {!newData()
+                ? !loading && (
+                      <Grid item xs={4}>
+                          <Typography variant="subtitle2" component="div">
+                              No result Found
+                          </Typography>
+                      </Grid>
+                  )
+                : (newData() as Array<DataAll>).map((item, index) => {
+                      return (
+                          <Grid item xs={4} key={index}>
+                              <Card data={item} />
+                          </Grid>
+                      );
+                  })}
         </Grid>
     );
 };
