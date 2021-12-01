@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const fetch = require('isomorphic-fetch');
 
 const token = process.env.TWITTER_TOKEN;
 
@@ -14,8 +14,9 @@ let requestOptions = {
     method: 'GET',
     headers: myHeaders
 };
-const handler = async function (event) {
+const handler = async function (event, context) {
     const searchItem = event.headers.search;
+    console.log(searchItem);
 
     try {
         const response = await fetch(
