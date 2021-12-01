@@ -49,8 +49,8 @@ const mapToSpaceData = ({
 
 const mapToData = ({ data, includes }: FetchSuccessPayload): Data => {
     const newData = {
-        data: data.map(item => mapToSpaceData(item)),
-        includes: includes.users.map(item => mapToUserData(item))
+        data: data?.map(item => mapToSpaceData(item)),
+        includes: includes?.users.map(item => mapToUserData(item))
     };
 
     return newData;
