@@ -5,11 +5,16 @@ const spaceLink = (id: string) => {
 };
 
 const scheduledDate = (scheduleDate: string): string => {
+    if (!scheduleDate) return 'Not scheduled yet';
     const date = new Date(scheduleDate);
-    return moment(date).utc().format('YYYY MMM ddd  HH:mm');
+    const schedule = moment(date).utc().format('YYYY MMM ddd  HH:mm');
+    return `${schedule} UTC`;
 };
 
-const getCorrectSizeImage = (imageUrl: string): string => {
+const getCorrectSizeImage = (imageUrl?: string): string => {
+    if (!imageUrl)
+        return 'https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png';
+
     let url = imageUrl.toString().replace(/normal/g, '400x400');
 
     return url;
