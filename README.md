@@ -17,9 +17,7 @@ Link to site: [findtwitterspace](https://findtwitterspace.com/)
 
 Contributions are always welcome!
 
-See `contributing.md` for ways to get started.
-
-Please adhere to this project's `code of conduct`.
+See [contributing.md](https://github.com/Rakhisharma/find-twitter-space/blob/main/CONTRIBUTING.md) for ways to get started.
 
 ## Tech Stack
 
@@ -55,6 +53,14 @@ Start the server
 
 ```bash
   npm run start
+```
+
+## Run Server Locally
+
+If you are tyring to fetch twitter data locally, you will see CORS issue. To avoid that I am using Netlify's serveless functions. To fetch the data locally, you will need to generate `TWITTER_AUTHENTICATION_TOKEN` also called `Bearer Token`. Once you have the token, you can replace this line of code with your token [here](https://github.com/Rakhisharma/find-twitter-space/blob/1f53be77e3710bca534cf7fb3bcc801b9665115a/functions/node-fetch/node-fetch.js#L3). Please make sure you are not sending your token when opening PR.
+
+```bash
+const token = process.env.YOUR_TWITTER_TOKEN;
 ```
 
 ## Feedback
