@@ -52,17 +52,35 @@ const Component = ({ data }: Props): ReactElement => {
                         flexDirection: 'row'
                     }}
                 >
-                    <CardActions>
+                    <Typography
+                        component="div"
+                        variant="body2"
+                        color="text.primary"
+                    >
+                        Organizer{' '}
                         <Link
                             href={`https://twitter.com//${data.userName}`}
                             target="_blank"
+                            underline="none"
                         >
                             @{data.userName}
                         </Link>
-
-                        <Link href={spaceLink(data.id)} target="_blank">
-                            Join here
-                        </Link>
+                    </Typography>
+                    <CardActions sx={{ pl: 2, pb: 1 }}>
+                        <Typography
+                            component="div"
+                            variant="body1"
+                            color="text.primary"
+                            // align="right"
+                        >
+                            <Link
+                                href={spaceLink(data.id)}
+                                target="_blank"
+                                underline="none"
+                            >
+                                Join space
+                            </Link>
+                        </Typography>
                     </CardActions>
                 </Box>
             </Box>
