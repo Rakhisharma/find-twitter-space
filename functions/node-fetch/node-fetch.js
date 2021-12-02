@@ -15,6 +15,8 @@ let requestOptions = {
     headers: myHeaders
 };
 const handler = async function (event, context) {
+    console.log('event', event);
+    console.log('token', token);
     const searchItem = event.headers.search;
     console.log(searchItem);
 
@@ -35,6 +37,8 @@ const handler = async function (event, context) {
         };
     } catch (error) {
         // output to netlify function log
+        console.log('event catch', event);
+        console.log('token catch', token);
         console.log(error);
         return {
             statusCode: 500,
