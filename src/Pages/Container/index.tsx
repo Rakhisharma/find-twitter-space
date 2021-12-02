@@ -116,12 +116,5 @@ const Component = (): ReactElement => {
 export default Component;
 
 //TODO
-//1. get data here
-// use that data to show it in the UI
-//remove usused modules
-//improve the structure of the project
-// improve types and remove 'any' type from project
-// write readme file
-// write how to use
-// write how to contribute
-// how things to improve section
+// WRITE TESTS
+// Change Icon
