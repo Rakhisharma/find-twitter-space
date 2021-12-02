@@ -2,7 +2,7 @@
 
 Serach for all twitter spaces that is live or scheduled right now.
 
-Link to site: [findtwitterspace](https://findtwitterspace.com/)
+Link to site: [searchtwitterspaces](https://searchtwitterspaces.com/)
 
 ## Features
 
