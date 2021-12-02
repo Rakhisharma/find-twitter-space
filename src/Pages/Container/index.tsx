@@ -114,7 +114,3 @@ const Component = (): ReactElement => {
 };
 
 export default Component;
-
-//TODO
-// WRITE TESTS
-// Change Icon
