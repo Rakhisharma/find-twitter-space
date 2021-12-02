@@ -1,16 +1,17 @@
 import { ReactElement, useState } from 'react';
 import { useAsyncEffect } from 'use-async-effect';
 import { Grid, Typography } from '@material-ui/core';
+
 import Search from '../../components/Search';
 import MenuField from '../../components/MenuField';
 import Card from '../../components/Card';
+import { Data as DataAll } from '../../components/Card/type';
+import fetchList from '../../api';
+import { Data, SpacesData, UserData } from '../../api/type';
 
 import useStyles from './styles';
 import { ALL_MENUFIELD_ITEM, LIST_ITEMS } from './constants';
 import { Value } from './types';
-import { Data as DataAll } from '../../components/Card/type';
-import fetchList from '../../api';
-import { Data, SpacesData, UserData } from '../../api/type';
 
 const Component = (): ReactElement => {
     const { root, titleText } = useStyles();
@@ -63,8 +64,6 @@ const Component = (): ReactElement => {
         }));
     };
 
-    console.log(newData());
-
     return (
         <Grid container spacing={4} className={root}>
             <Grid item>
@@ -77,8 +76,12 @@ const Component = (): ReactElement => {
                     fullWidth
                     placeholder="Search Twitter Spaces"
                     value={pattern}
-                    onChange={newValue => setPattern(newValue)}
+                    onChange={newValue => {
+                        setFilter(ALL_MENUFIELD_ITEM);
+                        setPattern(newValue);
+                    }}
                     onSubmit={() => {
+                        setFilter(ALL_MENUFIELD_ITEM);
                         setPattern(pattern);
                     }}
                 >
@@ -89,6 +92,7 @@ const Component = (): ReactElement => {
                         variant="outlined"
                         onChange={newValue => {
                             const newFilter = newValue as Value;
+                            setPattern('');
                             setFilter(newFilter);
                         }}
                     />
