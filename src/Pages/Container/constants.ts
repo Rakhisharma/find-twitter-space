@@ -1,8 +1,8 @@
 import { Value } from './types';
 
 const ALL_MENUFIELD_ITEM: Value = {
-    id: 'all',
-    value: 'All Categories'
+    id: 'category',
+    value: 'Select Category'
 };
 
 const LIST_ITEMS: Array<Value> = [
@@ -11,12 +11,12 @@ const LIST_ITEMS: Array<Value> = [
         value: 'NFT'
     },
     {
-        id: 'web',
-        value: 'Web'
-    },
-    {
         id: 'tech',
         value: 'Tech'
+    },
+    {
+        id: 'web',
+        value: 'Web'
     },
     {
         id: 'rust',

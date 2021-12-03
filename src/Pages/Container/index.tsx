@@ -74,7 +74,7 @@ const Component = (): ReactElement => {
             <Grid item xs={12}>
                 <Search
                     fullWidth
-                    placeholder="Search Twitter Spaces"
+                    placeholder="Search For Twitter Spaces"
                     value={pattern}
                     onChange={newValue => {
                         setFilter(ALL_MENUFIELD_ITEM);
