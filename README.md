@@ -1,6 +1,6 @@
 # Search Twitter Spaces
 
-Serach for all twitter spaces that is live or scheduled right now.
+Get all the twitter spaces in one webapp. This tool provides you with the functionality to search for all twitter spaces that are live or scheduled. You can search by category or the title and join the space directly from the webapp.  
 
 Link to site: [searchtwitterspaces](https://searchtwitterspaces.com/)
 
