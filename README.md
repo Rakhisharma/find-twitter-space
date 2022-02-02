@@ -49,10 +49,14 @@ Install dependencies
   npm install
 ```
 
-Start the server
-
 ```bash
   npm run start
+```
+
+Start the netlify server if you have token you token at place to get data locally.
+
+```bash
+  netlify dev
 ```
 
 ## Run Server Locally
